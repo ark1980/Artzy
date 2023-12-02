@@ -12,7 +12,7 @@ def seed_products():
                 category_id=int(product_row[1]),
                 name=product_row[2],
                 price=float(product_row[3]),
-                decription=product_row[4],
+                description=product_row[4],
                 category=product_row[5],
                 quantity_available=int(product_row[6])
             )

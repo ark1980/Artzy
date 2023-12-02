@@ -8,12 +8,12 @@ def seed_reviews():
         csv_reader = csv.reader(csv_file)
         for review_row in csv_reader:
             review = Review(
-                user_id=int(product_row[0]),
-                product_id=int(product_row[1]),
-                rating=int(product_row[2]),
-                comment=product_row[3]
+                user_id=int(review_row[0]),
+                product_id=int(review_row[1]),
+                rating=int(review_row[2]),
+                comment=review_row[3]
             )
-            db.session.add(product)
+            db.session.add(review)
     db.session.commit()
 
 

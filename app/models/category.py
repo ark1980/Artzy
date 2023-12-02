@@ -11,7 +11,7 @@ class Category(db.Model):
     name = db.Column(db.String(50), nullable=False)
 
     # Relationship
-    products = db.relationship('Product', backref='category', lazy=True)
+    products = db.relationship('Product', backref='category_name', lazy=True)
 
     def to_dict(self):
         return {
