@@ -12,7 +12,15 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    first_name = db.Column(db.String(255), nullable=False)
+    last_name = db.Column(db.String(255), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    # Relationships
+    products = db.relationship('Product', backref='owner', lazy=True)
+    reviews = db.relationship('Review', backref='author', lazy=True)
+    # wishlist = db.relationship(
+    #     'Wishlist', backref='user', uselist=False, lazy=True)
 
     @property
     def password(self):
@@ -29,5 +37,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name
         }
