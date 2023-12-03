@@ -15,10 +15,10 @@ def get_all_products():
             "owner_id": product.owner_id,
             "category_id": product.category_id,
             "name": product.name,
-            "price": str(product.price),
+            "price": float(product.price),
             "description": product.description,
             "category": product.category,
-            "quantity_available": str(product.quantity_available),
+            "quantity_available": int(product.quantity_available),
         } for product in products_query
     ]
     return jsonify(products_list)
