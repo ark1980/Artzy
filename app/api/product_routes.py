@@ -101,7 +101,7 @@ def create_new_product():
 def delete_product(productId):
     product = Product.query.get(productId)
 
-    if current_user != product.owner_id:
+    if current_user.id != product.owner_id:
         return jsonify({'message': 'Unauthorized user'}), 403
 
     if not product:
@@ -111,3 +111,44 @@ def delete_product(productId):
     db.session.commit()
 
     return jsonify({'message': 'Product deleted successfully'}), 200
+
+
+# Update a product
+@product_routes.route('/product/<int:productId>', methods=['PATCH'])
+@login_required
+def update_product(productId):
+    product = Product.query.get(productId)
+
+    if current_user.id != product.owner_id:
+        return jsonify({'message': 'Unauthorized user'}), 403
+
+    if not product:
+        return jsonify({'message': 'Product not found'}), 404
+
+    form = CreateProduct()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    """
+        uncomment the below line and fix indentation for front-end
+    """
+    # if form.validate_on_submit():
+    data = form.data
+
+    if not data:
+        return jsonify({'message': 'No input data provided'}), 400
+
+    if 'name' in data:
+        product.name = data['name']
+    if 'price' in data:
+        product.price = data['price']
+    if 'description' in data:
+        product.description = data['description']
+    if 'category' in data:
+        category = Category.query.filter_by(name=data['category']).first()
+        if category:
+            product.category_id = category.id
+    if 'quantity_available' in data:
+        product.quantity_available = data['quantity_available']
+
+    db.session.commit()
+    return jsonify({'message': 'Product updated successfully'}), 200
