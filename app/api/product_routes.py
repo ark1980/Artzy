@@ -119,11 +119,11 @@ def delete_product(productId):
 def update_product(productId):
     product = Product.query.get(productId)
 
-    if current_user.id != product.owner_id:
-        return jsonify({'message': 'Unauthorized user'}), 403
-
     if not product:
         return jsonify({'message': 'Product not found'}), 404
+
+    if current_user.id != product.owner_id:
+        return jsonify({'message': 'Unauthorized user'}), 403
 
     form = CreateProduct()
     form['csrf_token'].data = request.cookies['csrf_token']
