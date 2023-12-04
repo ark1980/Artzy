@@ -2,6 +2,9 @@ from os import error
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import Product
+from app.models import User
+from flask_login import current_user, login_user, logout_user, login_required
+
 
 product_routes = Blueprint('products', __name__)
 
@@ -46,3 +49,11 @@ def get_product(productId):
     return jsonify(to_dict_product(query_product))
 
     
+@product_routes.route("/users/<int:userId>")
+def get_product_by_user_id(userId):
+    if current_user.is_authenticated and current_user.id == userId:
+        user_products = Product.query.filter(Product.owner_id == userId).all()
+        products = [to_dict_product(product) for product in user_products]
+        return jsonify(products)
+    
+    return jsonify({'errors': ['Unauthorized']})
