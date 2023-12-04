@@ -1,7 +1,8 @@
+from crypt import methods
 from os import error
 from flask import Blueprint, jsonify, request
 from app.models import db, Product, Category
-from flask_login import current_user
+from flask_login import current_user, login_required
 from app.forms import CreateProduct
 
 
@@ -85,12 +86,28 @@ def create_new_product():
         price=data['price'],
         description=data['description'],
         category=data['category'],
-        quantity_available=data['quantity_available']
+        quantity_available=data.get('quantity_available', 0)
     )
-
-    print("++++++++++==========++++++++++++=============", new_product)
 
     # Add new product to the database
     db.session.add(new_product)
     db.session.commit()
     return jsonify({'message': 'Product created successfully', 'product_id': new_product.id}), 201
+
+
+# Delete a product
+@product_routes.route('/product/<int:productId>', methods=['DELETE'])
+@login_required
+def delete_product(productId):
+    product = Product.query.get(productId)
+
+    if current_user != product.owner_id:
+        return jsonify({'message': 'Unauthorized user'}), 403
+
+    if not product:
+        return jsonify({'message': 'Product not found'}), 404
+
+    db.session.delete(product)
+    db.session.commit()
+
+    return jsonify({'message': 'Product deleted successfully'}), 200
