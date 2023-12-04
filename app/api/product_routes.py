@@ -5,6 +5,22 @@ from app.models import Product
 
 product_routes = Blueprint('products', __name__)
 
+def to_dict_product(product):
+    """
+    Converts a product object to a dictionary
+    """
+    return {
+        "id": product.id,
+        "owner_id": product.owner_id,
+        "category_id": product.category_id,
+        "name": product.name,
+        "price": float(product.price),
+        "description": product.description,
+        "category": product.category,
+        "quantity_available": int(product.quantity_available),
+    }
+
+
 @product_routes.route('/')
 def get_all_products():
     """
@@ -15,18 +31,7 @@ def get_all_products():
     if not products_query:
         return jsonify({'message': 'No products found'}), 404
     
-    products_list = [
-        {
-            "id": product.id,
-            "owner_id": product.owner_id,
-            "category_id": product.category_id,
-            "name": product.name,
-            "price": float(product.price),
-            "description": product.description,
-            "category": product.category,
-            "quantity_available": int(product.quantity_available),
-        } for product in products_query
-    ]
+    products_list = [to_dict_product(product) for product in products_query]
 
     return jsonify(products_list)
 
@@ -38,15 +43,6 @@ def get_product(productId):
     if not query_product:
         return jsonify({'message': 'product not found'}), 404
     
-    product = {
-            "id": query_product.id,
-            "owner_id": query_product.owner_id,
-            "category_id": query_product.category_id,
-            "name": query_product.name,
-            "price": float(query_product.price),
-            "description": query_product.description,
-            "category": query_product.category,
-            "quantity_available": int(query_product.quantity_available),
-        }
+    return jsonify(to_dict_product(query_product))
 
-    return jsonify(product)
+    
