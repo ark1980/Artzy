@@ -27,4 +27,26 @@ def get_all_products():
             "quantity_available": int(product.quantity_available),
         } for product in products_query
     ]
+
     return jsonify(products_list)
+
+
+@product_routes.route('/<int:productId>')
+def get_product(productId):
+    query_product = Product.query.get(productId)
+
+    if not query_product:
+        return jsonify({'message': 'product not found'}), 404
+    
+    product = {
+            "id": query_product.id,
+            "owner_id": query_product.owner_id,
+            "category_id": query_product.category_id,
+            "name": query_product.name,
+            "price": float(query_product.price),
+            "description": query_product.description,
+            "category": query_product.category,
+            "quantity_available": int(query_product.quantity_available),
+        }
+
+    return jsonify(product)
