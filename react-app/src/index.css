@@ -1,3 +1,10 @@
+:root {
+  --ligth-green: #4fc883;
+  --ligth-color: #fcf1f2;
+  --lavender-color: #985fe0;
+  --dark-color: #2d2430;
+}
+
 *,
 *::before,
 *::after {
