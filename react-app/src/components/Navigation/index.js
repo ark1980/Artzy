@@ -9,12 +9,13 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav className="navigation-bar">
+      <NavLink exact to="/">
+        <h2 className="logo">Artzy</h2>
+      </NavLink>
+      <div className="search-bar">
+        <input type="text" placeholder="Search for anything" />
+      </div>
       <ul>
-        <li>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        </li>
         {isLoaded && (
           <li>
             <ProfileButton user={sessionUser} />
