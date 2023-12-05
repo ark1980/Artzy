@@ -14,7 +14,7 @@ from app.forms import CreateReview
 review_routes = Blueprint('reviews', __name__)
 
 
-# Get all Reviews by a Produtc's id ==========================================
+# Get all Reviews by a Produtc's id =============================================================================
 @review_routes.route('/<int:productId>')
 def get_reviews_by_product_id(productId):
     reviews = Review.query.filter(Review.product_id == productId).all()
@@ -27,7 +27,7 @@ def get_reviews_by_product_id(productId):
     return jsonify(product_reviews)
 
 
-# Get all Reviews of the Current User ==========================================
+# Get all Reviews of the Current User =============================================================================
 @review_routes.route('/user/<int:userId>')
 def get_reviews_by_user_id(userId):
 
@@ -43,7 +43,7 @@ def get_reviews_by_user_id(userId):
     return jsonify({'message': 'Unauthorized user'}), 403
 
 
-# Create a new Review for a product ==========================================
+# Create a new Review for a product =============================================================================
 @review_routes.route('/products/<int:productId>/reviews', methods=['POST'])
 @login_required
 def create_new_review(productId):
@@ -79,7 +79,7 @@ def create_new_review(productId):
     return jsonify({'message': 'Review created successfully', 'review_id': new_review.id})
 
 
-# Delete a Review
+# Delete a Review ==========================================================================
 @review_routes.route('/<int:reviewId>', methods=['DELETE'])
 @login_required
 def delete_review(reviewId):
@@ -97,7 +97,7 @@ def delete_review(reviewId):
     return jsonify({'message': 'Review deleted successfully'}), 200
 
 
-# Update a Review ==========================================
+# Update a Review =============================================================================
 @review_routes.route('/<int:reviewId>', methods=['PATCH'])
 @login_required
 def update_review(reviewId):
