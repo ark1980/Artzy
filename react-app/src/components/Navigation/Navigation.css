@@ -5,3 +5,8 @@
 .hidden {
   display: none;
 }
+
+.navigation-bar {
+  width: 100%;
+  background-color: aquamarine;
+}
