@@ -24,6 +24,8 @@ def to_dict_product(product):
         "quantity_available": int(product.quantity_available),
     }
 
+# Get all Products ==========================================
+
 
 @product_routes.route('/')
 def get_all_products():
@@ -40,6 +42,7 @@ def get_all_products():
     return jsonify(products_list)
 
 
+# Get Product details ==========================================
 @product_routes.route('/<int:productId>')
 def get_product(productId):
     query_product = Product.query.get(productId)
@@ -60,7 +63,7 @@ def get_product_by_user_id(userId):
     return jsonify({'errors': 'Not authorized user, must be the owner to see your products'}), 401
 
 
-# Create new product
+# Create new product ==========================================
 @product_routes.route('/add_product', methods=["POST"])
 def create_new_product():
 
@@ -89,13 +92,16 @@ def create_new_product():
         quantity_available=data.get('quantity_available', 0)
     )
 
-    # Add new product to the database
+    if not new_product:
+        return jsonify({'message': 'Missing required data'}), 400
+
+    # Add new Product to the database
     db.session.add(new_product)
     db.session.commit()
     return jsonify({'message': 'Product created successfully', 'product_id': new_product.id}), 201
 
 
-# Delete a product
+# Delete a product ==========================================
 @product_routes.route('/product/<int:productId>', methods=['DELETE'])
 @login_required
 def delete_product(productId):
@@ -113,17 +119,17 @@ def delete_product(productId):
     return jsonify({'message': 'Product deleted successfully'}), 200
 
 
-# Update a product
+# Update a product ==========================================
 @product_routes.route('/product/<int:productId>', methods=['PATCH'])
 @login_required
 def update_product(productId):
     product = Product.query.get(productId)
 
-    if not product:
-        return jsonify({'message': 'Product not found'}), 404
-
     if current_user.id != product.owner_id:
         return jsonify({'message': 'Unauthorized user'}), 403
+
+    if not product:
+        return jsonify({'message': 'Product not found'}), 404
 
     form = CreateProduct()
     form['csrf_token'].data = request.cookies['csrf_token']
