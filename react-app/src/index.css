@@ -1,6 +1,6 @@
 :root {
   --ligth-green: #4fc883;
-  --ligth-color: #fcf1f2;
+  --bg-color: #fcf1f2;
   --lavender-color: #985fe0;
   --dark-color: #2d2430;
 }
@@ -27,6 +27,8 @@ svg {
 body {
   font-family: "Open Sans", sans-serif;
   min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--dark-color);
 }
 
 ul {

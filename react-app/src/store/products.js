@@ -95,6 +95,7 @@ export const updateProductThunk = (productId) => async (dispatch) => {
 // Reducers =================================================
 const initialState = {
   products: {},
+  singleProduct: {},
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -105,6 +106,8 @@ const productsReducer = (state = initialState, action) => {
     // action.products.forEach((product) => (newState[product.id] = product));
     // return { ...state, product: newState };
     // return newState;
+    case SINGLE_PRODUCT:
+      return { ...state, singleProduct: action.product };
     default:
       return state;
   }
