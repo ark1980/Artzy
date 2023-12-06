@@ -1,7 +1,7 @@
 from crypt import methods
 from os import error
 from flask import Blueprint, jsonify, request
-from app.models import db, Product, Category
+from app.models import db, Product, Category, Review
 from flask_login import current_user, login_required
 from app.forms import CreateProduct
 
@@ -10,6 +10,8 @@ product_routes = Blueprint('products', __name__)
 
 
 def to_dict_product(product):
+    reviews = Review.query.filter(Review.product_id == product.id).all()
+    reviews_list = [review.to_dict() for review in reviews]
     """
     Converts a product object to a dictionary
     """
@@ -22,6 +24,7 @@ def to_dict_product(product):
         "description": product.description,
         "category": product.category,
         "quantity_available": int(product.quantity_available),
+        "reviews": reviews_list
     }
 
 
