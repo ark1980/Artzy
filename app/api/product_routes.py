@@ -12,6 +12,8 @@ product_routes = Blueprint('products', __name__)
 def to_dict_product(product):
     reviews = Review.query.filter(Review.product_id == product.id).all()
     reviews_list = [review.to_dict() for review in reviews]
+    rating = sum([r["rating"] for r in reviews_list]) / \
+        len(reviews_list) if reviews_list else 0
     """
     Converts a product object to a dictionary
     """
@@ -24,7 +26,8 @@ def to_dict_product(product):
         "description": product.description,
         "category": product.category,
         "quantity_available": int(product.quantity_available),
-        "reviews": reviews_list
+        "reviews": reviews_list,
+        "stars": int(rating)
     }
 
 
