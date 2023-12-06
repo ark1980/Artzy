@@ -24,9 +24,8 @@ def to_dict_product(product):
         "quantity_available": int(product.quantity_available),
     }
 
+
 # Get all Products ==========================================
-
-
 @product_routes.route('/')
 def get_all_products():
     """
@@ -53,6 +52,7 @@ def get_product(productId):
     return jsonify(to_dict_product(query_product))
 
 
+# Get Product by User Id ==========================================
 @product_routes.route("/users/<int:userId>")
 def get_product_by_user_id(userId):
     if current_user.id == userId:
