@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/products";
+import ProductCard from "../ProductCard";
+import "./Products.css";
 
 function Products() {
   const dispatch = useDispatch();
@@ -9,16 +11,14 @@ function Products() {
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+
   const products = useSelector((state) => state.products.products);
 
   return (
-    <div className="products-container">
-      <ul>
-        {products.map((product) => {
-          return <li key={product.key}>{product.name}</li>;
-        })}
-      </ul>
-    </div>
+    <ul className="products-container">
+      {Array.isArray(products) &&
+        products.map((product) => <ProductCard product={product} />)}
+    </ul>
   );
 }
 

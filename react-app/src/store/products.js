@@ -101,6 +101,10 @@ const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
       return { ...state, products: action.products };
+    // const newState = {};
+    // action.products.forEach((product) => (newState[product.id] = product));
+    // return { ...state, product: newState };
+    // return newState;
     default:
       return state;
   }
