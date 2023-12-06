@@ -16,16 +16,26 @@ const SingleProductPage = () => {
 
   return (
     <div className="single-product-page-container">
-      <div className="img-container">
-        <img src="/images/no-image.png" alt="" />
-      </div>
-      <div className="content-container">
-        <h1 className="product-title">{product.name}</h1>
-        <p className="product-price">${product.price}</p>
-        <p className="product-description">{product.description}</p>
-        <p className="rating-container">Customers Rating: 3</p>
-        <input className="input-qnt" type="number" min={0} placeholder="Qty" />
-        <button className="btn-add-to-cart">Add to cart</button>
+      <span className="back-to-products">
+        <NavLink to="/products">Back to all products</NavLink>
+      </span>
+      <div className="product-details">
+        <div className="img-container">
+          <img src="/images/no-image.png" alt="" />
+        </div>
+        <div className="content-container">
+          <h1 className="product-title">{product.name}</h1>
+          <p className="product-price">${product.price}</p>
+          <p className="product-description">{product.description}</p>
+          <p className="rating-container">Customers Rating: 3</p>
+          <input
+            className="input-qnt"
+            type="number"
+            min={0}
+            placeholder="Qty"
+          />
+          <button className="btn-add-to-cart">Add to cart</button>
+        </div>
       </div>
     </div>
   );

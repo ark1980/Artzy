@@ -2,7 +2,21 @@
   width: 80%;
   margin: 50px auto;
   display: flex;
-  /* border: 1px solid black; */
+  flex-direction: column;
+}
+
+.back-to-products {
+  border: none;
+  background-color: transparent;
+  padding-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.back-to-products a {
+  color: var(--lavender-color);
+}
+
+.product-details {
   display: flex;
 }
 
