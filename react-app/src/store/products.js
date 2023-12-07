@@ -64,6 +64,7 @@ export const createNewProduct = (product) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(product),
   });
   if (res.ok) {
     const data = await res.json();
@@ -72,6 +73,9 @@ export const createNewProduct = (product) => async (dispatch) => {
     }
     dispatch(createProduct(data));
     return data;
+  } else {
+    const errorData = await res.json();
+    return errorData.errors || ["An error occurred while creating the product"];
   }
 };
 
@@ -108,6 +112,8 @@ const productsReducer = (state = initialState, action) => {
     // return newState;
     case SINGLE_PRODUCT:
       return { ...state, singleProduct: action.product };
+    case CREATE_PRODUCT:
+      return { ...state, ...action.product };
     default:
       return state;
   }

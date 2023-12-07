@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
-              <NavLink to="/products/new">Create new product</NavLink>
+              <NavLink to="/products/newProduct">Create new product</NavLink>
             </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>

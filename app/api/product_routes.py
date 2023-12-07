@@ -12,7 +12,7 @@ product_routes = Blueprint('products', __name__)
 def to_dict_product(product):
     reviews = Review.query.filter(Review.product_id == product.id).all()
     reviews_list = [review.to_dict() for review in reviews]
-    print("++++++++++================++++++++++++", reviews_list)
+
     rating = sum([r["rating"] for r in reviews_list]) / \
         len(reviews_list) if reviews_list else 0
     """

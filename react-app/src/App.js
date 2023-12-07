@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Products from "./components/Products";
 import HomePage from "./components/HomePage";
+import NewProduct from "./components/NewProduct";
 import SingleProductPage from "./components/SingleProductPage";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route exact path="/products/newProduct">
+            <NewProduct />
           </Route>
           <Route path="/products/:productId">
             <SingleProductPage />
