@@ -1,0 +1,11 @@
+.single-review {
+  padding: 10px 0;
+}
+
+.single-review b {
+  font-weight: 500;
+}
+
+.reviewers-name {
+  color: var(--lavender-color);
+}

@@ -6,11 +6,11 @@ import "./HomePage.css";
 
 const HomePage = () => {
   return (
-    <div className="home-page">
+    <main className="home-page">
       <h1>Welcome to Artzy</h1>
       <h3>Wrap up the gifting season!</h3>
       <NavLink to="/products">Shop now</NavLink>
-    </div>
+    </main>
   );
 };
 

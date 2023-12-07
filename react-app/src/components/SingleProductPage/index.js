@@ -3,6 +3,7 @@ import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails } from "../../store/products";
 import "./SingleProductPage.css";
+import SingleReviewPage from "../SingleReviewPage";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -27,7 +28,7 @@ const SingleProductPage = () => {
           <h1 className="product-title">{product.name}</h1>
           <p className="product-price">${product.price}</p>
           <p className="product-description">{product.description}</p>
-          <p className="rating-container">Customers Rating: 3</p>
+          <p className="rating-container">Customer's Rating: {product.stars}</p>
           <input
             className="input-qnt"
             type="number"
@@ -36,6 +37,13 @@ const SingleProductPage = () => {
           />
           <button className="btn-add-to-cart">Add to cart</button>
         </div>
+      </div>
+      <div className="reviews">
+        <h3>Customer's Reviews</h3>
+        {Array.isArray(product.reviews) &&
+          product.reviews.map((review) => (
+            <SingleReviewPage review={review} key={review.id} />
+          ))}
       </div>
     </div>
   );

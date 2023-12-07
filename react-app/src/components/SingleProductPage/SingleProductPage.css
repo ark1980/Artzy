@@ -71,3 +71,13 @@
   background-color: var(--lavender-color);
   box-shadow: 1px 1px 4px var(--lavender-color);
 }
+
+.reviews {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.reviews h3 {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
