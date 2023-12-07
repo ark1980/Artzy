@@ -96,6 +96,23 @@ export const updateProductThunk = (productId) => async (dispatch) => {
   }
 };
 
+export const removeProduct = (productId) => async (dispatch) => {
+  const res = await fetch(`/api/products/product/${productId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (res.ok) {
+    const data = await res.json();
+    if (data.erros) {
+      return data.errors;
+    }
+    dispatch(deleteProduct(productId));
+    return data;
+  }
+};
+
 // Reducers =================================================
 const initialState = {
   products: {},
@@ -114,6 +131,8 @@ const productsReducer = (state = initialState, action) => {
       return { ...state, singleProduct: action.product };
     case CREATE_PRODUCT:
       return { ...state, ...action.product };
+    case REMOVE_PRODUCT:
+
     default:
       return state;
   }

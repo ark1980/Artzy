@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductDetails } from "../../store/products";
+import { getProductDetails, removeProduct } from "../../store/products";
 import "./SingleProductPage.css";
 import SingleReviewPage from "../SingleReviewPage";
 
