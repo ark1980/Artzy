@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { updateProductThunk, getProductDetails } from "../../store/products"; // Adjust path as necessary
 import "./UpdateProduct.css";
 
-const UpdateProduct = ({ id }) => {
+const UpdateProduct = () => {
   const [productData, setProductData] = useState({
     name: "",
     price: "",
@@ -22,6 +22,8 @@ const UpdateProduct = ({ id }) => {
   const history = useHistory();
 
   const product = useSelector((state) => state.products.singleProduct);
+  const id = product.id;
+  console.log("🚀 ~ file: index.js:27 ~ UpdateProduct ~ id:", id);
 
   useEffect(() => {
     if (id && !product) {
