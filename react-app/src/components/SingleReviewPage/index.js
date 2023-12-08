@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../../store/session";
+import DeleteReviewModal from "../DeleteReviewModal";
+import OpenModalButton from "../OpenModalButton";
 import "./SingleReviewPage.css";
 
 const SingleReviewPage = ({ review }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.session.users);
+  const logedInUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -28,6 +31,7 @@ const SingleReviewPage = ({ review }) => {
   }
 
   const user = usersObj[user_id];
+
   if (!user) {
     console.error(`No user found with id ${user_id}`);
     return null;
@@ -42,6 +46,15 @@ const SingleReviewPage = ({ review }) => {
       <p>
         Rating: <b>{rating}</b>
       </p>
+      {user.id === logedInUser.id ? (
+        <div>
+          <OpenModalButton
+            buttonText="delete"
+            modalComponent={<DeleteReviewModal id={review.id} />}
+          />
+          <button>update</button>
+        </div>
+      ) : null}
     </div>
   );
 };

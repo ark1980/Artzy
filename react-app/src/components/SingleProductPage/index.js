@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails, removeProduct } from "../../store/products";
 import "./SingleProductPage.css";
 import SingleReviewPage from "../SingleReviewPage";
-import DeleteModal from "../DeleteModal";
+import DeleteProductModal from "../DeleteProductModal";
 import OpenModalButton from "../OpenModalButton";
 import UpdateProduct from "../UpdateProduct";
 
@@ -27,7 +27,7 @@ const SingleProductPage = () => {
           <div className="btn_delete_and_update">
             <OpenModalButton
               buttonText="delete"
-              modalComponent={<DeleteModal id={productId} />}
+              modalComponent={<DeleteProductModal id={productId} />}
             />
             <OpenModalButton
               buttonText="update"
