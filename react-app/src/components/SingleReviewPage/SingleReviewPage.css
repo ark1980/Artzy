@@ -9,3 +9,7 @@
 .reviewers-name {
   color: var(--lavender-color);
 }
+
+.bold {
+  font-weight: 500;
+}

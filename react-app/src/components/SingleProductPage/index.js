@@ -64,10 +64,11 @@ const SingleProductPage = () => {
       </div>
       <div className="reviews">
         <h3>Customer's Reviews</h3>
-        {Array.isArray(product.reviews) &&
+        {/* {Array.isArray(product.reviews) &&
           product.reviews.map((review) => (
             <SingleReviewPage review={review} key={review.id} />
-          ))}
+          ))} */}
+        <SingleReviewPage productId={productId} />
       </div>
     </div>
   );

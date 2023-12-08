@@ -72,14 +72,14 @@ export const updateReviewById = (reviewId, reviewData) => async (dispatch) => {
 };
 
 // Rview Reducers ===================================================
-const initialState = {};
+const initialState = { allReviews: {} };
 
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_REVIEWS_BY_PRODUCT: {
       return {
         ...state,
-        [action.productId]: action.reviews,
+        allReviews: action.reviews,
       };
     }
     case CREATE_REVIEW: {
