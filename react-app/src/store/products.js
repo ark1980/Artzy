@@ -23,7 +23,7 @@ export const deleteProduct = (productId) => ({
 
 const createProduct = (product) => ({ type: CREATE_PRODUCT, product });
 
-const updateProduct = (productId) => ({ type: UPDATE_PRODUCT, productId });
+const updateProduct = (product) => ({ type: UPDATE_PRODUCT, product });
 
 // THUNKS =================================================
 export const getAllProducts = () => async (dispatch) => {
@@ -79,22 +79,30 @@ export const createNewProduct = (product) => async (dispatch) => {
   }
 };
 
-export const updateProductThunk = (productId) => async (dispatch) => {
-  const res = await fetch(`/api/products/product/${productId}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (res.ok) {
-    const data = await res.json();
-    if (data.erros) {
-      return data.errors;
+export const updateProductThunk =
+  (productId, updatedProductData) => async (dispatch) => {
+    const res = await fetch(`/api/products/product/${productId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedProductData),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.errors) {
+        return data.errors;
+      }
+      dispatch(updateProduct(data));
+      return data;
+    } else {
+      const errorData = await res.json();
+      return (
+        errorData.errors || ["An error occurred while updating the product"]
+      );
     }
-    dispatch(updateProduct(data));
-    return data;
-  }
-};
+  };
 
 export const removeProduct = (productId) => async (dispatch) => {
   const res = await fetch(`/api/products/product/${productId}`, {
@@ -139,6 +147,15 @@ const productsReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState.products[action.productId];
       return newState;
+    case UPDATE_PRODUCT:
+      const updatedProduct = action.product;
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          [updatedProduct.id]: updatedProduct,
+        },
+      };
     default:
       return state;
   }

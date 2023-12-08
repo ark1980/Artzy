@@ -6,6 +6,7 @@ import "./SingleProductPage.css";
 import SingleReviewPage from "../SingleReviewPage";
 import DeleteModal from "../DeleteModal";
 import OpenModalButton from "../OpenModalButton";
+import UpdateProduct from "../UpdateProduct";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -22,7 +23,7 @@ const SingleProductPage = () => {
     <div className="single-product-page-container">
       <div className="back-to-products">
         <NavLink to="/products">Back to all products</NavLink>
-        {product.owner_id === user.id ? (
+        {!user || product.owner_id !== user.id ? null : (
           <div className="btn_delete_and_update">
             <OpenModalButton
               buttonText="delete"
@@ -30,10 +31,10 @@ const SingleProductPage = () => {
             />
             <OpenModalButton
               buttonText="update"
-              modalComponent={<DeleteModal id={productId} />}
+              modalComponent={<UpdateProduct id={productId} />}
             />
           </div>
-        ) : null}
+        )}
       </div>
       <div className="product-details">
         <div className="img-container">
@@ -43,7 +44,10 @@ const SingleProductPage = () => {
           <h1 className="product-title">{product.name}</h1>
           <p className="product-price">${product.price}</p>
           <p className="product-description">{product.description}</p>
-          <p className="rating-container">Customer's Rating: {product.stars}</p>
+          <p className="rating-container">
+            Customer's Rating:{" "}
+            {!product.stars ? "No rating yet" : product.stars}
+          </p>
           <input
             className="input-qnt"
             type="number"

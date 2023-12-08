@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
 import { createNewProduct } from "../../store/products";
-import "./NewProduct.css"; // Import the CSS file
+import "./NewProduct.css";
 
 const NewProduct = () => {
   const [productData, setProductData] = useState({
@@ -14,8 +14,6 @@ const NewProduct = () => {
   });
 
   const [errors, setErrors] = useState([]);
-  const [successMsg, setSuccessMsg] = useState(false);
-  const [res, setRes] = useState(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -64,7 +62,6 @@ const NewProduct = () => {
     if (response) {
       console.log("Seccessfully created a new product!", response);
     }
-    setSuccessMsg(true);
     setProductData({
       name: "",
       price: "",
@@ -142,11 +139,6 @@ const NewProduct = () => {
         <button type="submit" className="submit-button">
           Create Product
         </button>
-        {successMsg && (
-          <div>
-            <p>Successfully created a new product!</p>
-          </div>
-        )}
       </form>
     </div>
   );
