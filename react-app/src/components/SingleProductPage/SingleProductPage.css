@@ -10,10 +10,20 @@
   background-color: transparent;
   padding-bottom: 8px;
   font-size: 0.9rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .back-to-products a {
   color: var(--lavender-color);
+}
+
+.btn_delete_and_update {
+  margin-left: 20px;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .product-details {

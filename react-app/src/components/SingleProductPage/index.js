@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails, removeProduct } from "../../store/products";
 import "./SingleProductPage.css";
 import SingleReviewPage from "../SingleReviewPage";
+import DeleteModal from "../DeleteModal";
+import OpenModalButton from "../OpenModalButton";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
 
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.singleProduct);
+  const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getProductDetails(productId));
@@ -17,9 +20,21 @@ const SingleProductPage = () => {
 
   return (
     <div className="single-product-page-container">
-      <span className="back-to-products">
+      <div className="back-to-products">
         <NavLink to="/products">Back to all products</NavLink>
-      </span>
+        {product.owner_id === user.id ? (
+          <div className="btn_delete_and_update">
+            <OpenModalButton
+              buttonText="delete"
+              modalComponent={<DeleteModal id={productId} />}
+            />
+            <OpenModalButton
+              buttonText="update"
+              modalComponent={<DeleteModal id={productId} />}
+            />
+          </div>
+        ) : null}
+      </div>
       <div className="product-details">
         <div className="img-container">
           <img src="/images/no-image.png" alt="" />

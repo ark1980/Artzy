@@ -103,13 +103,17 @@ export const removeProduct = (productId) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   });
+
   if (res.ok) {
     const data = await res.json();
-    if (data.erros) {
+    if (data.errors) {
       return data.errors;
     }
     dispatch(deleteProduct(productId));
     return data;
+  } else {
+    const errorData = await res.json();
+    return errorData.errors || ["An error occurred while deleting the product"];
   }
 };
 
@@ -132,7 +136,9 @@ const productsReducer = (state = initialState, action) => {
     case CREATE_PRODUCT:
       return { ...state, ...action.product };
     case REMOVE_PRODUCT:
-
+      const newState = { ...state };
+      delete newState.products[action.productId];
+      return newState;
     default:
       return state;
   }
