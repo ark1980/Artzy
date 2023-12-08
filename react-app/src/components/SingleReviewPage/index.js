@@ -40,7 +40,7 @@ const SingleReviewPage = ({ review }) => {
   return (
     <div className="single-review">
       <p className="reviewers-name">
-        <b>{user.first_name}'s review:</b>
+        <b>{user.username}'s review:</b>
       </p>
       <p>{comment}</p>
       <p>

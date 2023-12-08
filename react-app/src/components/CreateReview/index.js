@@ -1,12 +1,14 @@
 // CreateReview.js
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createReviewForProduct } from "path/to/review/thunks";
+import { useHistory } from "react-router-dom";
+import { createReviewForProduct } from "../../store/reviews";
 import "./CreateReview.css";
 
 const CreateReview = ({ productId }) => {
   const [reviewData, setReviewData] = useState({ comment: "", rating: 1 });
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleChange = (e) => {
     setReviewData({ ...reviewData, [e.target.name]: e.target.value });
