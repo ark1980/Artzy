@@ -9,6 +9,7 @@ import Products from "./components/Products";
 import HomePage from "./components/HomePage";
 import NewProduct from "./components/NewProduct";
 import SingleProductPage from "./components/SingleProductPage";
+import CreateReview from "./components/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/products">
             <Products />
+          </Route>
+          <Route path="/create_review">
+            <CreateReview />
           </Route>
           <Route path="/login">
             <LoginFormPage />

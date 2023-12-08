@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { removeProduct } from "../../store/products";
 
-function DeleteModal({ id }) {
+function DeleteProductModal({ id }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const history = useHistory();
@@ -20,22 +19,14 @@ function DeleteModal({ id }) {
     <>
       <h1>Are you sure?</h1>
       <span>Are you sure you want to delete your item?</span>
-      <button
-        style={{ cursor: "pointer" }}
-        onClick={() => deleteProduct()}
-        className="signup_login_button"
-      >
+      <button style={{ cursor: "pointer" }} onClick={() => deleteProduct()}>
         Yes Delete it
       </button>
-      <button
-        style={{ cursor: "pointer" }}
-        onClick={closeModal}
-        className="signup_login_button keep_item"
-      >
+      <button style={{ cursor: "pointer" }} onClick={closeModal}>
         No Keep it
       </button>
     </>
   );
 }
 
-export default DeleteModal;
+export default DeleteProductModal;

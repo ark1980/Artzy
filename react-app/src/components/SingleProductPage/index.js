@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails, removeProduct } from "../../store/products";
 import "./SingleProductPage.css";
 import SingleReviewPage from "../SingleReviewPage";
-import DeleteModal from "../DeleteModal";
+import DeleteProductModal from "../DeleteProductModal";
 import OpenModalButton from "../OpenModalButton";
 import UpdateProduct from "../UpdateProduct";
+import CreateReview from "../CreateReview";
 
 const SingleProductPage = () => {
   const { productId } = useParams();
@@ -27,11 +28,11 @@ const SingleProductPage = () => {
           <div className="btn_delete_and_update">
             <OpenModalButton
               buttonText="delete"
-              modalComponent={<DeleteModal id={productId} />}
+              modalComponent={<DeleteProductModal id={productId} />}
             />
             <OpenModalButton
               buttonText="update"
-              modalComponent={<UpdateProduct id={productId} />}
+              modalComponent={<UpdateProduct productId={productId} />}
             />
           </div>
         )}
@@ -48,6 +49,10 @@ const SingleProductPage = () => {
             Customer's Rating:{" "}
             {!product.stars ? "No rating yet" : product.stars}
           </p>
+          {user.id !== product.owner_id ? (
+            <NavLink to="/create_review">write a review</NavLink>
+          ) : null}
+
           <input
             className="input-qnt"
             type="number"
