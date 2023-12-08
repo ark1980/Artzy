@@ -1,1 +1,36 @@
-/* TODO Add site wide styles */
+:root {
+  --ligth-green: #4fc883;
+  --bg-color: #fcf1f2;
+  --lavender-color: #985fe0;
+  --dark-color: #2d2430;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--dark-color);
+}
+
+ul {
+  list-style: none;
+}

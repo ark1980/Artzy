@@ -14,3 +14,12 @@ class Review(db.Model):
         add_prefix_for_prod("products.id")), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.String(255))
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "product_id": self.product_id,
+            "comment": self.comment,
+            "rating": int(self.rating),
+        }

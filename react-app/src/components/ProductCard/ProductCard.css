@@ -1,0 +1,11 @@
+.product-card {
+  width: 250px;
+  height: 300px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.product-card h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
