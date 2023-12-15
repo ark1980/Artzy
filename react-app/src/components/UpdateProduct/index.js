@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { updateProductThunk, getProductDetails } from "../../store/products"; // Adjust path as necessary
+import {
+  updateProductThunk,
+  getProductDetails,
+  getAllProducts,
+} from "../../store/products"; // Adjust path as necessary
 import "./UpdateProduct.css";
 
-const UpdateProduct = () => {
+const UpdateProduct = ({ productId }) => {
   const [productData, setProductData] = useState({
     name: "",
     price: "",
@@ -15,23 +19,21 @@ const UpdateProduct = () => {
   });
 
   const [errors, setErrors] = useState([]);
-  const [successMsg, setSuccessMsg] = useState(false);
 
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const product = useSelector((state) => state.products.singleProduct);
-  const id = product.id;
-  console.log("🚀 ~ file: index.js:27 ~ UpdateProduct ~ id:", id);
+  // const id = product.id;
 
   useEffect(() => {
-    if (id && !product) {
-      dispatch(getProductDetails(id));
+    if (productId && !product) {
+      dispatch(getProductDetails(productId));
     } else if (product) {
       setProductData({ ...product });
     }
-  }, [dispatch, id, product]);
+  }, [dispatch, productId, product]);
 
   const handleChange = (e) => {
     setProductData({
@@ -78,12 +80,14 @@ const UpdateProduct = () => {
       quantity_available: parseInt(productData.quantity_available, 10) || 1,
     };
 
-    const response = await dispatch(updateProductThunk(id, formattedData));
+    const response = await dispatch(
+      updateProductThunk(productId, formattedData)
+    );
     if (response) {
-      setSuccessMsg(true);
       closeModal();
-      dispatch(getProductDetails(id));
-      history.push(`/products/${id}`);
+      // dispatch(getProductDetails(productId));
+      await dispatch(getAllProducts());
+      history.push(`/products/${productId}`);
     }
   };
 
@@ -152,11 +156,13 @@ const UpdateProduct = () => {
         <button type="submit" className="submit-button">
           Update Product
         </button>
-        {successMsg && (
-          <div>
-            <p>Successfully updated the product!</p>
-          </div>
-        )}
+        <button
+          type="submit"
+          className="cancel-button"
+          onClick={() => closeModal()}
+        >
+          Cancel
+        </button>
       </form>
     </div>
   );

@@ -13,12 +13,14 @@ const SingleProductPage = () => {
   const { productId } = useParams();
 
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.products.singleProduct);
-  const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getProductDetails(productId));
   }, [dispatch, productId]);
+
+  const products = useSelector((state) => state.products);
+  const product = products[productId];
+  const user = useSelector((state) => state.session.user);
 
   return (
     <div className="single-product-page-container">
@@ -68,7 +70,7 @@ const SingleProductPage = () => {
           product.reviews.map((review) => (
             <SingleReviewPage review={review} key={review.id} />
           ))} */}
-        <SingleReviewPage productId={productId} />
+        <SingleReviewPage product={product} />
       </div>
     </div>
   );

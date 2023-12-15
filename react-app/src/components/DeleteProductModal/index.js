@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
@@ -9,7 +9,7 @@ function DeleteProductModal({ id }) {
   const { closeModal } = useModal();
   const history = useHistory();
 
-  const deleteProduct = () => {
+  const deleteProduct = (id) => {
     dispatch(removeProduct(id));
     closeModal();
     history.push("/products");
@@ -19,7 +19,7 @@ function DeleteProductModal({ id }) {
     <>
       <h1>Are you sure?</h1>
       <span>Are you sure you want to delete your item?</span>
-      <button style={{ cursor: "pointer" }} onClick={() => deleteProduct()}>
+      <button style={{ cursor: "pointer" }} onClick={() => deleteProduct(id)}>
         Yes Delete it
       </button>
       <button style={{ cursor: "pointer" }} onClick={closeModal}>

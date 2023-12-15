@@ -14,9 +14,9 @@ function DeleteReviewModal({ id }) {
   const deleteReview = () => {
     dispatch(deleteReviewById(id));
     closeModal();
-    // dispatch(getProductDetails(product.id));
+    dispatch(fetchReviewsByProductId(product.id));
     history.push(`/products/${product.id}`);
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (

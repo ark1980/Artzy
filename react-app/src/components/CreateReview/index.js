@@ -1,22 +1,30 @@
 // CreateReview.js
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createReviewForProduct } from "../../store/reviews";
+import { getProductDetails } from "../../store/products";
+import { useModal } from "../../context/Modal";
 import "./CreateReview.css";
 
 const CreateReview = ({ productId }) => {
   const [reviewData, setReviewData] = useState({ comment: "", rating: 1 });
   const dispatch = useDispatch();
   const history = useHistory();
+  const { closeModal } = useModal();
+
+  // const singleProduct = useSelector((state) => state.products.singleProduct);
 
   const handleChange = (e) => {
     setReviewData({ ...reviewData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // e.preventDefault();
     dispatch(createReviewForProduct(productId, reviewData));
+    closeModal();
+    dispatch(getProductDetails(productId));
+    history.push(`/products/${productId}`);
   };
 
   return (
