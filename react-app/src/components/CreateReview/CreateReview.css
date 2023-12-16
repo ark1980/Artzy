@@ -1,7 +1,7 @@
 .create-review-container {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  min-width: 400px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ddd;
@@ -9,17 +9,17 @@
 }
 
 .review-input-field,
-.review-select-field,
 .review-textarea-field {
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: 100%;
 }
 
 .review-textarea-field {
   height: 100px;
-  resize: vertical;
+  resize: horizontal;
 }
 
 .review-submit-button {
@@ -29,6 +29,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  width: 100%;
 }
 
 .review-submit-button:hover {
@@ -38,4 +39,23 @@
 .review-form-errors {
   color: red;
   margin-bottom: 10px;
+}
+
+.labels {
+  margin-bottom: 10px;
+}
+
+.cancel-button {
+  margin-top: 10px;
+  background-color: #ff4646;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.cancel-button:hover {
+  background-color: #ff0000;
 }

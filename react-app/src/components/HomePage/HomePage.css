@@ -1,9 +1,23 @@
 .home-page {
-  margin: 50px auto;
+  width: 100%;
   text-align: center;
+  height: 500px;
+  background-color: var(--lavender-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.home-page h1 {
+.homepage-content {
+  display: flex;
+  height: 60%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.homepage-content h1 {
   font-size: 3rem;
   font-weight: 600;
 }

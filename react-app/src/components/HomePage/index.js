@@ -7,9 +7,10 @@ import "./HomePage.css";
 const HomePage = () => {
   return (
     <main className="home-page">
-      <h1>Welcome to Artzy</h1>
-      <h3>Wrap up the gifting season!</h3>
-      <NavLink to="/products">Shop now</NavLink>
+      <div className="homepage-content">
+        <h1>Welcome to Artzy</h1>
+        <h3>Wrap up the gifting season!</h3>
+      </div>
     </main>
   );
 };

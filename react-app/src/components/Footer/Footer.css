@@ -1,0 +1,16 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: var(--dark-color);
+  color: var(--bg-color);
+  /* position: fixed;
+  bottom: 0;
+  right: 0; */
+  font-size: 0.8rem;
+  margin-top: auto;
+}

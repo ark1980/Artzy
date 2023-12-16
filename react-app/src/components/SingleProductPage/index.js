@@ -25,7 +25,7 @@ const SingleProductPage = () => {
   return (
     <div className="single-product-page-container">
       <div className="back-to-products">
-        <NavLink to="/products">Back to all products</NavLink>
+        <NavLink to="/">Back to all products</NavLink>
         {!user || product.owner_id !== user.id ? null : (
           <div className="btn_delete_and_update">
             <OpenModalButton
@@ -45,16 +45,18 @@ const SingleProductPage = () => {
         </div>
         <div className="content-container">
           <h1 className="product-title">{product.name}</h1>
-          <p className="product-price">${product.price}</p>
+          <p className="product-price">${product.price.toFixed(2)}</p>
           <p className="product-description">{product.description}</p>
           <p className="rating-container">
             Customer's Rating:{" "}
             {!product.stars ? "No rating yet" : product.stars}
           </p>
           {user.id !== product.owner_id ? (
-            <NavLink to="/create_review">write a review</NavLink>
+            <OpenModalButton
+              buttonText="write a review"
+              modalComponent={<CreateReview productId={productId} />}
+            />
           ) : null}
-
           <input
             className="input-qnt"
             type="number"

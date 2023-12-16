@@ -156,11 +156,7 @@ const UpdateProduct = ({ productId }) => {
         <button type="submit" className="submit-button">
           Update Product
         </button>
-        <button
-          type="submit"
-          className="cancel-button"
-          onClick={() => closeModal()}
-        >
+        <button className="cancel-button" onClick={() => closeModal()}>
           Cancel
         </button>
       </form>

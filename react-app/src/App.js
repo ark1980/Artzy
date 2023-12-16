@@ -9,6 +9,8 @@ import Products from "./components/Products";
 import HomePage from "./components/HomePage";
 import NewProduct from "./components/NewProduct";
 import SingleProductPage from "./components/SingleProductPage";
+import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,12 +20,12 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="app">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <Products />
           </Route>
           <Route exact path="/products/newProduct">
             <NewProduct />
@@ -31,9 +33,9 @@ function App() {
           <Route exact path="/products/:productId">
             <SingleProductPage />
           </Route>
-          <Route path="/products">
+          {/* <Route path="/products">
             <Products />
-          </Route>
+          </Route> */}
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -42,7 +44,8 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+      <Footer />
+    </div>
   );
 }
 

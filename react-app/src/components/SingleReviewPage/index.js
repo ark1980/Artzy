@@ -41,9 +41,22 @@ const SingleReviewPage = ({ product }) => {
                 <div>
                   <OpenModalButton
                     buttonText="delete"
-                    modalComponent={<DeleteReviewModal id={review.id} />}
+                    modalComponent={
+                      <DeleteReviewModal
+                        productId={product.id}
+                        id={review.id}
+                      />
+                    }
                   />
-                  <button>update</button>
+                  <OpenModalButton
+                    buttonText="update"
+                    modalComponent={
+                      <DeleteReviewModal
+                        productId={product.id}
+                        id={review.id}
+                      />
+                    }
+                  />
                 </div>
               ) : null}
             </div>

@@ -19,12 +19,13 @@ function DeleteProductModal({ id }) {
     <>
       <h1>Are you sure?</h1>
       <span>Are you sure you want to delete your item?</span>
-      <button style={{ cursor: "pointer" }} onClick={() => deleteProduct(id)}>
+      <button
+        style={{ backgroundColor: "red" }}
+        onClick={() => deleteProduct(id)}
+      >
         Yes Delete it
       </button>
-      <button style={{ cursor: "pointer" }} onClick={closeModal}>
-        No Keep it
-      </button>
+      <button onClick={closeModal}>No Keep it</button>
     </>
   );
 }

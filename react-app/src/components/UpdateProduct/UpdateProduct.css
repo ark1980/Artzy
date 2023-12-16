@@ -63,3 +63,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.cancel-button:hover {
+  background-color: #ff0000;
+}

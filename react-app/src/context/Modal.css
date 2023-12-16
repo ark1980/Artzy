@@ -23,4 +23,18 @@
   background-color: white;
   padding: 100px 200px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 400px;
+}
+
+#modal-content button {
+  width: 100%;
+  background-color: var(--lavender-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: var(--bg-color);
+  cursor: pointer;
 }

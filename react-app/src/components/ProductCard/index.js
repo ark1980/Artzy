@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
         <h2>{product.name}</h2>
       </NavLink>
       <p>{product.description}</p>
-      <p>${product.price}</p>
+      <p>${product.price.toFixed(2)}</p>
       <p>stars :{product.stars}</p>
     </li>
   );

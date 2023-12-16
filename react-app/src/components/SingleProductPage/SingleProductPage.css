@@ -3,7 +3,7 @@
   margin: 50px auto;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .back-to-products {
@@ -14,6 +14,7 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .back-to-products a {
