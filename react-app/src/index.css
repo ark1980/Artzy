@@ -1,8 +1,18 @@
 :root {
-  --ligth-green: #4fc883;
-  --bg-color: #fcf1f2;
+  /* --ligth-green: #4fc883;
+  --bg-color: #fefaf5;
   --lavender-color: #985fe0;
   --dark-color: #2d2430;
+  --nav-bar: #d6ccc2;
+  --dark-cream: #d6ccc2;
+  --ligth-cream: #e3d5ca;
+  --accent-color: #d5bdaf; */
+
+  --lavender-web: #d9dbf1ff;
+  --french-gray: #d0cdd7ff;
+  --french-gray-2: #acb0bdff;
+  --dark-slate-gray: #416165ff;
+  --midnight-green: #0b3948ff;
 }
 
 *,

@@ -7,9 +7,14 @@
   padding: 10px 20px;
   align-items: stretch;
   justify-content: space-between;
-  border: 1px solid black;
+  border: 1px solid var(--lavender-web);
   border-radius: 8px;
-  background-color: var(--bg-color);
+  background: rgb(11, 57, 72);
+  background: linear-gradient(
+    180deg,
+    rgba(11, 57, 72, 1) 21%,
+    rgba(28, 111, 139, 1) 100%
+  );
 }
 
 .dropdown {
@@ -26,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: var(--dark-color);
+  background-color: var(--midnight-green);
   height: 130px;
 }
 
@@ -48,10 +53,14 @@
 }
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  color: var(--bg-color);
-  font-size: 2rem;
+  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+  font-size: 3rem;
   cursor: pointer;
+  color: #86c5ce;
+  transition: color 0.2s ease-in-out;
+}
+.material-symbols-outlined:hover {
+  color: var(--lavender-web);
 }
 
 .logout-btn,
