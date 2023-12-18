@@ -16,10 +16,11 @@ const SingleReviewPage = ({ product }) => {
     // dispatch(fetchReviewsByProductId(productId));
   }, [dispatch]);
 
-  const users = useSelector((state) => state.session.users);
-  const logedInUser = useSelector((state) => state.session.user);
-  // const reviews = useSelector((state) => state.reviews.allReviews);
   const reviews = product.reviews;
+  const logedInUser = useSelector((state) => state.session.user);
+  // const users = useSelector((state) => state.session.users);
+  
+  
 
   if (!logedInUser) {
     return (
@@ -31,9 +32,6 @@ const SingleReviewPage = ({ product }) => {
         reviews.map((review) => {
           return (
             <div key={review.id} className="single-review">
-              <p className="reviewers-name">
-                {/* <p className="bold">{user.username}'s review:</p> */}
-              </p>
               <p>{review.comment}</p>
               <p>
                 Rating: <p className="bold">{review.rating}</p>
@@ -56,9 +54,9 @@ const SingleReviewPage = ({ product }) => {
         reviews.map((review) => {
           return (
             <div key={review.id} className="single-review">
-              <p className="reviewers-name">
-                {/* <p className="bold">{user.username}'s review:</p> */}
-              </p>
+            {/* <p className="reviewers-name">
+                <p className="bold">{}'s review:</p>
+              </p> */}
               <p>{review.comment}</p>
               <p>
                 Rating: <p className="bold">{review.rating}</p>

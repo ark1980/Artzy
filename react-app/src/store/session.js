@@ -17,8 +17,6 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
-const initialState = { user: null };
-
 export const getAllUsers = (users) => async (dispatch) => {
   const response = await fetch("/api/users/", {
     headers: {
@@ -116,6 +114,8 @@ export const signUp = (username, email, password) => async (dispatch) => {
   }
 };
 
+const initialState = { user: null };
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
@@ -123,7 +123,7 @@ export default function reducer(state = initialState, action) {
     case REMOVE_USER:
       return { user: null };
     case GET_ALL_USERS:
-      return { ...state, ...action.users };
+      return { ...state, users: action.users };
     default:
       return state;
   }
