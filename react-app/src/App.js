@@ -6,7 +6,6 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Products from "./components/Products";
-import HomePage from "./components/HomePage";
 import NewProduct from "./components/NewProduct";
 import SingleProductPage from "./components/SingleProductPage";
 import Footer from "./components/Footer";

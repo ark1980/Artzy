@@ -21,6 +21,12 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemoUserLogin = () => {
+    setEmail("demo@aa.io");
+    setPassword("password");
+    dispatch(login(email, password));
+  }
+
   return (
     <>
       <h1>Log In</h1>
@@ -49,6 +55,7 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button type="submit" className="demo-user-btn" onClick={handleDemoUserLogin} style={{backgroundColor: "#416165ff"}}>Log In as Demo User</button>
       </form>
     </>
   );

@@ -21,20 +21,52 @@
 #modal-content {
   position: absolute;
   background-color: white;
-  padding: 100px 200px;
+  padding: 20px 200px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  min-height: 400px;
+  min-height: 450px;
 }
 
 #modal-content button {
   width: 100%;
-  background-color: var(--lavender-color);
+  background-color: var(--midnight-green);
   border: none;
   padding: 10px 20px;
-  border-radius: 50px;
-  color: var(--bg-color);
+  border-radius: 5px;
+  color: var(--lavender-web);
   cursor: pointer;
+}
+
+#modal-content h1 {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--midnight-green);
+}
+
+#modal-content form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#modal-content form input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--french-gray);
+  display: block;
+  margin-bottom: 15px;
+}
+
+#modal-content form input:focus {
+  outline: none;
+  border: 1px solid var(--midnight-green);
+}
+
+#modal-content form label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--midnight-green);
+  margin-bottom: 10px;
 }
