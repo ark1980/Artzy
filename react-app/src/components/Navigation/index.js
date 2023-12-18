@@ -13,9 +13,9 @@ function Navigation({ isLoaded }) {
         <NavLink exact to="/">
           <h2 className="logo">Artzy</h2>
         </NavLink>
-        <div className="search-bar">
+        {/* <div className="search-bar">
           <input type="text" placeholder="Search for anything" />
-        </div>
+        </div> */}
         <ul>
           {isLoaded && (
             <li>

@@ -81,9 +81,6 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-            <button className="logout-btn" onClick={handleLogout}>
-              Login demo user
-            </button>
           </>
         )}
       </ul>

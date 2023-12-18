@@ -83,3 +83,17 @@
 .create-new-btn:hover {
   text-decoration: underline;
 }
+
+.navigation-bar a {
+  text-decoration: none;
+}
+
+.navigation-bar a:hover {
+  color: var(--dark-slate-gray);
+}
+
+.logo {
+  color: var(--lavender-web);
+  font-weight: 700;
+  font-size: 1.8rem;
+}

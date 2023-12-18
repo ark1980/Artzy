@@ -142,7 +142,7 @@ const NewProduct = () => {
           className="input-field"
           min={1}
         />
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button" style={{backgroundColor: "#0b3948ff"}}>
           Create Product
         </button>
       </form>
