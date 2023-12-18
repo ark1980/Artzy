@@ -3,7 +3,7 @@ import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   return (
-    <li className="product-card">
+    <li className="product-card" key={product.id}>
       <NavLink to={`/products/${product.id}`}>
         <h2>{product.name}</h2>
       </NavLink>

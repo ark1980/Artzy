@@ -21,6 +21,32 @@ const SingleReviewPage = ({ product }) => {
   // const reviews = useSelector((state) => state.reviews.allReviews);
   const reviews = product.reviews;
 
+  if (!logedInUser) {
+    return (
+      <div>
+      {!reviews.length ? (
+        <p>No reviews yet</p>
+      ) : (
+        Array.isArray(reviews) &&
+        reviews.map((review) => {
+          return (
+            <div key={review.id} className="single-review">
+              <p className="reviewers-name">
+                {/* <p className="bold">{user.username}'s review:</p> */}
+              </p>
+              <p>{review.comment}</p>
+              <p>
+                Rating: <p className="bold">{review.rating}</p>
+              </p>
+            </div>
+          );
+        })
+      )}
+    </div>
+    )
+  }
+
+
   return (
     <div>
       {!reviews.length ? (

@@ -22,6 +22,34 @@ const SingleProductPage = () => {
   const product = products[productId];
   const user = useSelector((state) => state.session.user);
 
+  if (!user) {
+    return (
+      <div className="single-product-page-container">
+        <div className="back-to-products">
+          <NavLink to="/">Back to all products</NavLink>
+        </div>
+        <div className="product-details">
+          <div className="img-container">
+            <img src="/images/no-image.png" alt="" />
+          </div>
+          <div className="content-container">
+            <h1 className="product-title">{product.name}</h1>
+            <p className="product-price">${product.price.toFixed(2)}</p>
+            <p className="product-description">{product.description}</p>
+            <p className="rating-container">
+              Customer's Rating:{" "}
+              {!product.stars ? "No rating yet" : product.stars}
+            </p>
+          </div>
+        </div>
+        <div className="reviews">
+          <h3>Customer's Reviews</h3>
+          <SingleReviewPage product={product} />
+        </div>
+      </div>
+    )
+  }
+  
   return (
     <div className="single-product-page-container">
       <div className="back-to-products">
