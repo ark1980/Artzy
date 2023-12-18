@@ -19,9 +19,9 @@ const deleteReview = (reviewId) => ({
   reviewId,
 });
 
-const updateReview = (review) => ({
-  type: UPDATE_REVIEW,
-  review,
+const updateReview = (id, data) => ({
+  type: 'UPDATE_REVIEW',
+  review: { id, ...data },
 });
 
 // Thunk Action Creators ============================================
@@ -68,6 +68,7 @@ export const updateReviewById = (reviewId, reviewData) => async (dispatch) => {
   if (response.ok) {
     const updatedReview = await response.json();
     dispatch(updateReview(updatedReview));
+    return updatedReview;
   }
 };
 
@@ -101,13 +102,14 @@ const reviewsReducer = (state = initialState, action) => {
       return newState;
     }
     case UPDATE_REVIEW: {
-      const { product_id, ...updatedReview } = action.review;
-      return {
-        ...state,
-        [product_id]: state[product_id].map((review) =>
-          review.id === updatedReview.id ? updatedReview : review
-        ),
-      };
+        const updatedReview = action.review;
+        const productId = updatedReview.product_id; // assuming the review object has a product_id field
+        return {
+          ...state,
+          [productId]: state[productId].map(review => 
+            review.id === updatedReview.id ? updatedReview : review
+          ),
+        };
     }
     default:
       return state;

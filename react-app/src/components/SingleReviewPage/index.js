@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAllUsers } from "../../store/session";
 import DeleteReviewModal from "../DeleteReviewModal";
+import UpdateReviewModal from "../UpdateReviewModal";
 import OpenModalButton from "../OpenModalButton";
 import { fetchReviewsByProductId } from "../../store/reviews";
 import "./SingleReviewPage.css";
@@ -75,9 +76,9 @@ const SingleReviewPage = ({ product }) => {
                   <OpenModalButton
                     buttonText="update"
                     modalComponent={
-                      <DeleteReviewModal
+                      <UpdateReviewModal
                         productId={product.id}
-                        id={review.id}
+                        review={review}
                       />
                     }
                   />
