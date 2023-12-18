@@ -11,8 +11,8 @@ function OpenModalButton({
   const btnStyle = {
     border: "none",
     backgroundColor: "transparent",
-    paddingBottom: "8px",
-    fontSize: "0.9rem",
+    margin: "10px 10px 10px 0",
+    fontSize: "1rem",
     color: "#4fc883",
     cursor: "pointer",
   };

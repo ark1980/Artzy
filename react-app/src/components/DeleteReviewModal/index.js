@@ -3,20 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewById, fetchReviewsByProductId } from "../../store/reviews";
-import { getProductDetails } from "../../store/products";
+import { getProductDetails, getAllProducts } from "../../store/products";
 
-function DeleteReviewModal({ id }) {
+function DeleteReviewModal({ id, productId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const history = useHistory();
-  const product = useSelector((state) => state.products.singleProduct);
 
-  const deleteReview = () => {
+  const deleteReview = async () => {
     dispatch(deleteReviewById(id));
     closeModal();
-    // dispatch(getProductDetails(product.id));
-    history.push(`/products/${product.id}`);
-    window.location.reload();
+    await dispatch(fetchReviewsByProductId(productId));
+    await dispatch(getAllProducts());
+    history.push(`/products/${productId}`);
+    // window.location.reload();
   };
 
   return (

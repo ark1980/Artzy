@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/products";
 import ProductCard from "../ProductCard";
+import HomePage from "../HomePage";
 import "./Products.css";
 
 function Products() {
@@ -12,13 +13,17 @@ function Products() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products);
+  const productsList = Object.values(products);
 
   return (
-    <ul className="products-container">
-      {Array.isArray(products) &&
-        products.map((product) => <ProductCard product={product} />)}
-    </ul>
+    <>
+      <HomePage />
+      <ul className="products-container">
+        {Array.isArray(productsList) &&
+          productsList.map((product) => <ProductCard product={product} />)}
+      </ul>
+    </>
   );
 }
 

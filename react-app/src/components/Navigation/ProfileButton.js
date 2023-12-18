@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { NavLink } from "react-router-dom";
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -35,13 +36,21 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
+  const handleDemoUser = () => {
+    const credential = {
+      username: "demo@aa.io",
+      password: "password",
+    };
+  };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" style={{ position: "relative" }} />
+    <div className="dropdown">
+      <button className="profile-btn" onClick={openMenu}>
+        {/* <i className="fas fa-user-circle" style={{ position: "relative" }} /> */}
+        <span class="material-symbols-outlined">account_circle</span>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -49,10 +58,14 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
-              <NavLink to="/products/newProduct">Create new product</NavLink>
+              <NavLink className="create-new-btn" to="/products/newProduct">
+                Create new product
+              </NavLink>
             </li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className="logout-btn" onClick={handleLogout}>
+                Log Out
+              </button>
             </li>
           </>
         ) : (
@@ -68,10 +81,13 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <button className="logout-btn" onClick={handleLogout}>
+              Login demo user
+            </button>
           </>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

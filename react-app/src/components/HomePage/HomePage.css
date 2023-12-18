@@ -1,9 +1,42 @@
 .home-page {
-  margin: 50px auto;
+  width: 100%;
   text-align: center;
+  height: 500px;
+  /* background-color: var(--accent-color); */
+  background: rgb(11, 57, 72);
+  background: linear-gradient(
+    180deg,
+    rgba(11, 57, 72, 1) 0%,
+    rgba(23, 111, 140, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.home-page h1 {
-  font-size: 3rem;
-  font-weight: 600;
+.homepage-content {
+  display: flex;
+  height: 60%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.homepage-content h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: 7rem;
+  font-weight: 700;
+  color: #86c5ce;
+}
+
+.homepage-content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--lavender-web);
+}
+
+.homepage-content h3 {
+  font-size: 1.8rem;
+  color: var(--lavender-web);
 }

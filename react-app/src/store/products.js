@@ -107,54 +107,55 @@ export const updateProductThunk =
 export const removeProduct = (productId) => async (dispatch) => {
   const res = await fetch(`/api/products/product/${productId}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
   });
-
   if (res.ok) {
-    const data = await res.json();
-    if (data.errors) {
-      return data.errors;
-    }
     dispatch(deleteProduct(productId));
-    return data;
-  } else {
-    const errorData = await res.json();
-    return errorData.errors || ["An error occurred while deleting the product"];
   }
+  // if (res.ok) {
+  //   const data = await res.json();
+  //   if (data.errors) {
+  //     return data.errors;
+  //   }
+  //   dispatch(deleteProduct(productId));
+  //   return data;
+  // } else {
+  //   const errorData = await res.json();
+  //   return errorData.errors || ["An error occurred while deleting the product"];
+  // }
 };
 
 // Reducers =================================================
 const initialState = {
-  products: {},
-  singleProduct: {},
+  // products: {},
+  // singleProduct: {},
 };
 
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
-      return { ...state, products: action.products };
-    // const newState = {};
-    // action.products.forEach((product) => (newState[product.id] = product));
-    // return { ...state, product: newState };
-    // return newState;
-    case SINGLE_PRODUCT:
+      // return { ...state, products: action.products };
+      const newState = {};
+      action.products.forEach((product) => (newState[product.id] = product));
+      // return { ...state, products: newState };
+      return newState;
+    case SINGLE_PRODUCT: {
       return { ...state, singleProduct: action.product };
+    }
     case CREATE_PRODUCT:
       return { ...state, ...action.product };
-    case REMOVE_PRODUCT:
+    case REMOVE_PRODUCT: {
       const newState = { ...state };
-      delete newState.products[action.productId];
+      delete newState[action.productId];
       return newState;
+    }
     case UPDATE_PRODUCT:
       const updatedProduct = action.product;
       return {
         ...state,
-        products: {
-          ...state.products,
-          [updatedProduct.id]: updatedProduct,
-        },
+        [updatedProduct.id]: updatedProduct,
       };
     default:
       return state;

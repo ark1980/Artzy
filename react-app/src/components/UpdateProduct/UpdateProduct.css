@@ -53,3 +53,17 @@
 .error {
   margin-top: 5px;
 }
+
+.cancel-button {
+  margin-top: 10px;
+  background-color: #ff4646;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background-color: #ff0000;
+}

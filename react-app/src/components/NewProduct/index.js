@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Redirect } from "react-router-dom";
-import { createNewProduct } from "../../store/products";
+import { createNewProduct, getAllProducts } from "../../store/products";
+import { fetchReviewsByProductId } from "../../store/reviews";
 import "./NewProduct.css";
 
 const NewProduct = () => {
+  const user = useSelector((state) => state.session.user);
   const [productData, setProductData] = useState({
     name: "",
     price: "",
@@ -56,6 +58,7 @@ const NewProduct = () => {
       ...productData,
       price: Number(parseFloat(productData.price).toFixed(2)),
       quantity_available: parseInt(productData.quantity_available, 10) || 1,
+      owner_id: user.id,
     };
 
     const response = await dispatch(createNewProduct(formattedData));
@@ -69,8 +72,11 @@ const NewProduct = () => {
       category: "",
       quantity_available: 1,
     });
+    console.log(response);
 
     // console.log(response);
+    await dispatch(getAllProducts());
+    await dispatch(fetchReviewsByProductId(response.product_id));
     history.push(`/products/${response.product_id}`);
   };
 
