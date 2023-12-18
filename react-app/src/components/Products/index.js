@@ -21,7 +21,7 @@ function Products() {
       <HomePage />
       <ul className="products-container">
         {Array.isArray(productsList) &&
-          productsList.map((product) => <ProductCard product={product} />)}
+          productsList.map((product) => <ProductCard product={product} key={product.id}/>)}
       </ul>
     </>
   );
