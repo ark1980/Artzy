@@ -36,6 +36,13 @@ function ProfileButton({ user }) {
     dispatch(logout());
   };
 
+  const handleDemoUser = () => {
+    const credential = {
+      username: "demo@aa.io",
+      password: "password",
+    };
+  };
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
@@ -74,6 +81,9 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <button className="logout-btn" onClick={handleLogout}>
+              Login demo user
+            </button>
           </>
         )}
       </ul>
